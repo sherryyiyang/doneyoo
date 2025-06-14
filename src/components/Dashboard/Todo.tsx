@@ -107,6 +107,7 @@ const Todo: React.FC<TodoProps> = ({
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         isDragging={snapshot.isDragging}
+                        isCompleted={!!task.finished_at}
                       >
                         <Checkbox
                           type="checkbox"

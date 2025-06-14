@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   background: var(--neutral-50);
+
 `;
 
 export const Header = styled.div`
@@ -25,6 +26,7 @@ export const Form = styled.form`
   background: white;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 0.5px solid var(--light-text);
 `;
 
 export const Input = styled.input`
@@ -63,17 +65,25 @@ export const TaskList = styled.div`
   }
 `;
 
-export const TaskItem = styled.div<{ isDragging: boolean }>`
+export const TaskItem = styled.div<{ isDragging: boolean, isCompleted: boolean }>`
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 12px;
-  background: white;
+  background: ${({ isCompleted }) =>
+     isCompleted
+      ? "rgba(255, 255, 255, 0.6)"
+      : "white"};
+
   border-radius: 8px;
+  border: ${({ isCompleted }) =>
+     isCompleted
+      ? "none"
+      : "0.5px solid var(--light-text)"};
   box-shadow: ${({ isDragging }) =>
     isDragging
       ? "0 8px 16px rgba(0, 0, 0, 0.1)"
-      : "0 2px 4px rgba(0, 0, 0, 0.05)"};
+      : "white"};
   transition: transform 0.2s, box-shadow 0.2s;
 
   &:hover {

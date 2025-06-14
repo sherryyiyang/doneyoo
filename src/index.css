@@ -57,7 +57,7 @@
 
   /* Background Gradients */
   --bg-gradient-main: linear-gradient(170deg, #efd9ce 0%, #dec0f1 100%);
-  --bg-gradient-card: linear-gradient(170deg, rgba(255, 255, 255, 0.9) 0%, rgba(239, 217, 206, 0.1) 100%);
+  --bg-gradient-card: linear-gradient(170deg, rgba(255, 255, 255, 1) 0%, rgba(239, 217, 206, 0.2) 100%);
 
   /* Border Gradients */
   --border-gradient-primary: linear-gradient(135deg, #7161ef 0%, #957fef 100%);
@@ -115,4 +115,8 @@ code {
   bottom: -150px;
   left: -150px;
   transform: rotate(45deg);
+}
+:where(.ant-checkbox-checked) .ant-checkbox-inner {
+  background-color: grey !important;
+  border-color: grey !important;
 }
