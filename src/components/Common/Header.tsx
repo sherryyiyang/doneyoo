@@ -75,13 +75,7 @@ const Header: React.FC = () => {
             Home
           </NavLink>
           <NavLink to="/dashboard" active={location.pathname === "/dashboard"}>
-            Dashboard
-          </NavLink>
-          <NavLink to="/dashboard" active={location.pathname === "/dashboard"}>
-            Dashboard
-          </NavLink>
-          <NavLink to="/dashboard" active={location.pathname === "/dashboard"}>
-            Dashboard
+            Demo
           </NavLink>
         </NavLinks>
         <ButtonGroup>

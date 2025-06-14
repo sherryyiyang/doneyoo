@@ -28,7 +28,7 @@
   --gradient-secondary: linear-gradient(135deg, var(--primary-500) 0%, var(--secondary-500) 100%);
 
   /* Neutral Colors */
-  --neutral-50: #f4eddf;
+  --neutral-50: #fff9eb;
   --neutral-100: #f3f4f6;
   --neutral-200: #e5e7eb;
   --neutral-300: #d1d5db;

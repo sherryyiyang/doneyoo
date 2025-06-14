@@ -97,10 +97,11 @@ const FeatureDescription = styled.p`
 `;
 
 const CTASection = styled.section`
-  padding: 120px 0;
-  background: var(--gradient-primary);
+  padding: 80px 0;
   color: white;
   text-align: center;
+  background: rgba(0, 0, 0, 1);
+  margin: 32px 0;
 `;
 
 const CTAContent = styled.div`
