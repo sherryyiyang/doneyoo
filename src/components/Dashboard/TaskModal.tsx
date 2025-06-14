@@ -17,7 +17,7 @@ const Overlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--purple-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,7 +26,7 @@ const Overlay = styled.div`
 
 const Modal = styled.div`
   background: white;
-  border-radius: 16px;
+  border-radius: 6px;
   padding: 24px;
   width: 100%;
   max-width: 500px;
@@ -58,8 +58,8 @@ const CloseButton = styled.button`
   border-radius: 4px;
 
   &:hover {
-    background: var(--neutral-100);
-    color: var(--neutral-700);
+    background: var(--purple-primary);
+    color: white;
   }
 `;
 
@@ -110,15 +110,7 @@ const TaskModal: React.FC<TaskModalProps> = ({
   initialDate,
 }) => {
   const [formData, setFormData] = useState<TaskFormData>({
-    title: "",
-    description: "",
-    date: initialDate || new Date(),
-    completed: false,
-    priority: "medium",
-    category: "General",
-    tags: [],
-    reminder: false,
-    repeat: null,
+    content: "",
   });
 
   if (!isOpen) return null;
@@ -154,87 +146,16 @@ const TaskModal: React.FC<TaskModalProps> = ({
         </Header>
         <Form onSubmit={handleSubmit}>
           <FormGroup>
-            <Label>Title</Label>
-            <Input
-              type="text"
-              value={formData.title}
-              onChange={(e) =>
-                setFormData({ ...formData, title: e.target.value })
-              }
-              placeholder="Enter task title"
-              required
-              fullWidth
-            />
-          </FormGroup>
-          <FormGroup>
             <Label>Description</Label>
             <Input
               type="text"
-              value={formData.description || ""}
+              value={formData.content || ""}
               onChange={(e) =>
-                setFormData({ ...formData, description: e.target.value })
+                setFormData({ ...formData, content: e.target.value })
               }
               placeholder="Enter task description"
               fullWidth
             />
-          </FormGroup>
-          <FormGroup>
-            <Label>Date</Label>
-            <Input
-              type="datetime-local"
-              value={formData.date.toISOString().slice(0, 16)}
-              onChange={(e) =>
-                setFormData({ ...formData, date: new Date(e.target.value) })
-              }
-              required
-              fullWidth
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>Priority</Label>
-            <Select
-              value={formData.priority || "medium"}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  priority: e.target.value as "low" | "medium" | "high",
-                })
-              }
-            >
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-            </Select>
-          </FormGroup>
-          <FormGroup>
-            <Label>Category</Label>
-            <Input
-              type="text"
-              value={formData.category || ""}
-              onChange={(e) =>
-                setFormData({ ...formData, category: e.target.value })
-              }
-              placeholder="Enter category"
-              fullWidth
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>Repeat</Label>
-            <Select
-              value={formData.repeat || ""}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  repeat: e.target.value as TaskFormData["repeat"],
-                })
-              }
-            >
-              <option value="">No repeat</option>
-              <option value="daily">Daily</option>
-              <option value="weekly">Weekly</option>
-              <option value="monthly">Monthly</option>
-              <option value="yearly">Yearly</option>
-            </Select>
           </FormGroup>
           <ButtonGroup>
             <Button type="button" variant="outline" onClick={onClose}>

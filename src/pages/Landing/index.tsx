@@ -60,7 +60,7 @@ const ButtonGroup = styled.div`
 
 const FeaturesSection = styled.section`
   padding: 120px 0;
-  background: white;
+  background: var(--neutral-50);
 `;
 
 const FeaturesGrid = styled.div`

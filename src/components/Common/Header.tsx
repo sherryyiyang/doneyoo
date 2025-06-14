@@ -4,16 +4,27 @@ import { Link, useLocation } from "react-router-dom";
 import Button from "./Button";
 
 const HeaderContainer = styled.header`
-  background: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  padding: 16px 24px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  background: var(--neutral-50);
+  padding: 16px 32px;
+  background-clip: padding-box;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    z-index: -1;
+    margin: -1px;
+    border-radius: inherit;
+    background: var(--neutral-50);
+  }
 `;
 
-const HeaderContent = styled.div`
-  max-width: 1200px;
+const Nav = styled.nav`
+  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -22,48 +33,27 @@ const HeaderContent = styled.div`
 
 const Logo = styled(Link)`
   font-size: 24px;
-  font-weight: 700;
-  color: var(--gradient-primary);
+  font-weight: 600;
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  &:hover {
-    color: #2563eb;
-  }
+  background: var(--dark-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
-const Nav = styled.nav`
+const NavLinks = styled.div`
   display: flex;
-  align-items: center;
-  gap: 32px;
+  gap: 24px;
 `;
 
 const NavLink = styled(Link)<{ active?: boolean }>`
   text-decoration: none;
-  color: ${({ active }) => (active ? "var(--gradient-primary)" : "#4b5563")};
-  font-weight: ${({ active }) => (active ? "600" : "500")};
-  padding: 8px 0;
-  position: relative;
-
-  &:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--gradient-primary);
-    transform: scaleX(${({ active }) => (active ? 1 : 0)});
-    transition: transform 0.2s ease-in-out;
-  }
+  color: ${({ active }) =>
+    active ? "var( --dark-text)" : "var( --dark-text)"};
+  font-weight: ${({ active }) => (active ? "600" : "400")};
+  transition: color 0.2s;
 
   &:hover {
-    color: var(--gradient-primary);
-    &:after {
-      transform: scaleX(1);
-    }
+    color: var(--dark-text);
   }
 `;
 
@@ -78,55 +68,26 @@ const Header: React.FC = () => {
 
   return (
     <HeaderContainer>
-      <HeaderContent>
-        <Logo to="/">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8 2V5"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M16 2V5"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path d="M3 8H21" stroke="currentColor" strokeWidth="2" />
-            <rect
-              x="3"
-              y="4"
-              width="18"
-              height="18"
-              rx="2"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-          </svg>
-          Doneyoo
-        </Logo>
-        <Nav>
-          <NavLink to="/features" active={location.pathname === "/features"}>
-            Features
+      <Nav>
+        <Logo to="/">Doneyoo</Logo>
+        <NavLinks>
+          <NavLink to="/" active={location.pathname === "/"}>
+            Home
           </NavLink>
-          <NavLink to="/pricing" active={location.pathname === "/pricing"}>
-            Pricing
+          <NavLink to="/dashboard" active={location.pathname === "/dashboard"}>
+            Dashboard
           </NavLink>
-          <NavLink to="/about" active={location.pathname === "/about"}>
-            About
+          <NavLink to="/dashboard" active={location.pathname === "/dashboard"}>
+            Dashboard
           </NavLink>
-        </Nav>
+          <NavLink to="/dashboard" active={location.pathname === "/dashboard"}>
+            Dashboard
+          </NavLink>
+        </NavLinks>
         <ButtonGroup>
           {isAuthenticated ? (
             <>
-              <Button variant="outline" as={Link} to="/dashboard">
+              <Button variant="outline" to="/dashboard">
                 Dashboard
               </Button>
               <Button variant="secondary">Log Out</Button>
@@ -142,7 +103,7 @@ const Header: React.FC = () => {
             </>
           )}
         </ButtonGroup>
-      </HeaderContent>
+      </Nav>
     </HeaderContainer>
   );
 };

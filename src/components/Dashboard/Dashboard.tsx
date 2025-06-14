@@ -39,7 +39,7 @@ const Dashboard: React.FC = () => {
           onTaskComplete={() => {}}
           onTaskAdd={() => {}}
           onTaskDelete={() => {}}
-          onTaskUpdate={() => {}}
+          onTasksReorder={() => {}}
         />
       </DashboardGrid>
     </DashboardContainer>

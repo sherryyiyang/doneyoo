@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "outline" | "light";
-  size?: "small" | "medium" | "large";
+  size?: "small" | "medium" | "large" | "extra-small";
   fullWidth?: boolean;
   as?: React.ElementType;
   to?: string;
@@ -13,7 +13,7 @@ const StyledButton = styled.button<ButtonProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 6px;
   font-weight: 500;
   transition: all 0.2s;
   cursor: pointer;
@@ -22,6 +22,11 @@ const StyledButton = styled.button<ButtonProps>`
   /* Size Variants */
   ${({ size }) => {
     switch (size) {
+      case "extra-small":
+        return `
+          padding: 6px 12px;
+          font-size: 12px;
+        `;
       case "small":
         return `
           padding: 8px 16px;
@@ -45,18 +50,18 @@ const StyledButton = styled.button<ButtonProps>`
     switch (variant) {
       case "secondary":
         return `
-          background: var(--secondary-500);
+          background: var( --dark-text);
           color: white;
           border: none;
           &:hover {
-            background: var(--secondary-600);
+            background: var( --dark-text);
           }
         `;
       case "outline":
         return `
           background: transparent;
-          color: var(--primary-600);
-          border: 2px solid var(--primary-600);
+          color: var( --dark-text);
+          border: 1px solid var( --dark-text);
           &:hover {
             background: var(--primary-50);
           }
@@ -64,7 +69,7 @@ const StyledButton = styled.button<ButtonProps>`
       case "light":
         return `
           background: white;
-          color: var(--primary-600);
+          color: var( --dark-text);
           border: none;
           &:hover {
             background: var(--neutral-100);
@@ -72,11 +77,11 @@ const StyledButton = styled.button<ButtonProps>`
         `;
       default:
         return `
-          background: var(--primary-500);
+          background: var( --dark-text);
           color: white;
           border: none;
           &:hover {
-            background: var(--primary-600);
+            background: var( --dark-text);
           }
         `;
     }
