@@ -11,7 +11,7 @@ const Container = styled.div`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 350px;
-  gap: 32px;
+  gap: 48px;
   max-width: 1400px;
   margin: 0 auto;
 
@@ -22,7 +22,6 @@ const Grid = styled.div`
 
 const Section = styled.section`
   background: var(--neutral-50);
-  border-radius: 36px;
   overflow: hidden;
 `;
 

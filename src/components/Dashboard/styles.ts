@@ -2,7 +2,6 @@ import exp from "constants";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 0 24px;
   background: var(--neutral-50);
 `;
 
