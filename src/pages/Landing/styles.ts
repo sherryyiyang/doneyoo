@@ -7,7 +7,7 @@ export const Container = styled.div`
 
 export const HeroSection = styled.section`
   position: relative;
-  padding: 120px 0;
+  padding: 60px 0;
   overflow: hidden;
 `;
 
@@ -56,7 +56,7 @@ export const ButtonGroup = styled.div`
 `;
 
 export const FeaturesSection = styled.section`
-  padding: 120px 0;
+  padding: 60px 0;
   background: var(--neutral-50);
 `;
 
@@ -118,3 +118,10 @@ export const CTASubtitle = styled.p`
   margin-bottom: 32px;
   opacity: 0.9;
 `;
+
+
+export const Illustration = styled.img`
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+`

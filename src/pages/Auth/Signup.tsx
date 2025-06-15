@@ -105,8 +105,26 @@ const Signup: React.FC = () => {
               Continue with Google
             </Button>
             <TermsText>
-              By signing up, you agree to our <a href="#">Terms of Service</a>{" "}
-              and <a href="#">Privacy Policy</a>
+              By signing up, you agree to our{" "}
+              <a
+                href="/terms"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/terms");
+                }}
+              >
+                Terms of Service
+              </a>{" "}
+              and{" "}
+              <a
+                href="/privacy"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/privacy");
+                }}
+              >
+                Privacy Policy
+              </a>
             </TermsText>
           </StyledForm>
           <SignInLink>

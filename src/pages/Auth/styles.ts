@@ -196,3 +196,16 @@ export const SignInLink = styled.p`
     }
   }
 `;
+
+export const ForgotPasswordLink = styled.a`
+  font-size: 14px;
+  color: var(--primary-500);
+  text-decoration: none;
+  align-self: flex-end;
+  margin-top: -12px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
