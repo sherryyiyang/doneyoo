@@ -120,3 +120,6 @@ code {
   background-color: grey !important;
   border-color: grey !important;
 }
+.ant-input {
+  padding: 8px 12px
+}
