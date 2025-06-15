@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import {
   Container,
   Title,
@@ -7,6 +6,12 @@ import {
   Section,
   SectionTitle,
   SectionContent,
+  Subsection,
+  SubsectionTitle,
+  HighlightText,
+  LastUpdated,
+  Table,
+  DefinitionList,
 } from "./styles";
 
 const TermsOfService: React.FC = () => {
@@ -17,10 +22,10 @@ const TermsOfService: React.FC = () => {
         <Section>
           <SectionTitle>1. Acceptance of Terms</SectionTitle>
           <SectionContent>
-            By accessing and using Doneyoo, you agree to be bound by these Terms
-            of Service and all applicable laws and regulations. If you do not
-            agree with any of these terms, you are prohibited from using or
-            accessing this site.
+            By accessing and using <HighlightText>Doneyoo</HighlightText>, you
+            agree to be bound by these Terms of Service and all applicable laws
+            and regulations. If you do not agree with any of these terms, you
+            are prohibited from using or accessing this site.
           </SectionContent>
         </Section>
 
@@ -46,6 +51,11 @@ const TermsOfService: React.FC = () => {
                 materials on any other server
               </li>
             </ul>
+            <Subsection>
+              <SubsectionTitle>License Termination</SubsectionTitle>
+              This license shall automatically terminate if you violate any of
+              these restrictions and may be terminated by Doneyoo at any time.
+            </Subsection>
           </SectionContent>
         </Section>
 
@@ -54,20 +64,24 @@ const TermsOfService: React.FC = () => {
           <SectionContent>
             To access certain features of Doneyoo, you must register for an
             account. You agree to:
-            <ul>
-              <li>
+            <DefinitionList>
+              <dt>Account Information</dt>
+              <dd>
                 Provide accurate and complete information when creating your
                 account
-              </li>
-              <li>Maintain the security of your account credentials</li>
-              <li>
+              </dd>
+              <dt>Security</dt>
+              <dd>Maintain the security of your account credentials</dd>
+              <dt>Unauthorized Access</dt>
+              <dd>
                 Notify us immediately of any unauthorized use of your account
-              </li>
-              <li>
+              </dd>
+              <dt>Account Responsibility</dt>
+              <dd>
                 Accept responsibility for all activities that occur under your
                 account
-              </li>
-            </ul>
+              </dd>
+            </DefinitionList>
           </SectionContent>
         </Section>
 
@@ -79,6 +93,28 @@ const TermsOfService: React.FC = () => {
             non-exclusive, royalty-free license to use, reproduce, modify, and
             distribute your content in connection with providing and improving
             our services.
+            <Table>
+              <thead>
+                <tr>
+                  <th>Content Type</th>
+                  <th>Usage Rights</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Tasks and Events</td>
+                  <td>Used to provide calendar and todo functionality</td>
+                </tr>
+                <tr>
+                  <td>User Profile</td>
+                  <td>Used to personalize your experience</td>
+                </tr>
+                <tr>
+                  <td>Feedback</td>
+                  <td>Used to improve our services</td>
+                </tr>
+              </tbody>
+            </Table>
           </SectionContent>
         </Section>
 
@@ -143,6 +179,8 @@ const TermsOfService: React.FC = () => {
             jurisdiction of the courts in that location.
           </SectionContent>
         </Section>
+
+        <LastUpdated>Last updated: March 2024</LastUpdated>
       </Content>
     </Container>
   );
