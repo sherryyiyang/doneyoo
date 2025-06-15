@@ -18,6 +18,7 @@ const StyledButton = styled.button<ButtonProps>`
   transition: all 0.2s;
   cursor: pointer;
   white-space: nowrap;
+  text-decoration: none;
 
   /* Size Variants */
   ${({ size }) => {

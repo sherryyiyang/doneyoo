@@ -74,7 +74,6 @@ export const StyledForm = styled(Form)`
 
   .ant-input-affix-wrapper {
     border-radius: 8px;
-    border: 1px solid var(--neutral-200);
     padding: 8px 12px;
     height: 44px;
     transition: all 0.2s;

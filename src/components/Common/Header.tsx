@@ -64,7 +64,7 @@ const ButtonGroup = styled.div`
 
 const Header: React.FC = () => {
   const location = useLocation();
-  const isAuthenticated = true; // TODO: Replace with actual auth state
+  const isAuthenticated = false; // TODO: Replace with actual auth state
 
   return (
     <HeaderContainer>
@@ -84,7 +84,9 @@ const Header: React.FC = () => {
               <Button variant="outline" to="/dashboard">
                 Dashboard
               </Button>
-              <Button variant="secondary">Log Out</Button>
+              <Button as={Link} to="/signup" variant="secondary">
+                Log Out
+              </Button>
             </>
           ) : (
             <>

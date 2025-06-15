@@ -51,10 +51,8 @@ export const Title = styled.h1`
 `;
 
 export const Content = styled.div`
-  background: white;
   padding: 32px;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
     padding: 24px 16px;

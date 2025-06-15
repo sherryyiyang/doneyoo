@@ -122,5 +122,6 @@ code {
   border-color: grey !important;
 }
 .ant-input {
-  padding: 8px 12px
+  padding: 8px 12px;
+    border: 1px solid var(--dark-text);
 }
