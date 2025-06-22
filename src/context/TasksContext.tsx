@@ -20,6 +20,14 @@ const TasksContext = createContext<ITasksContext | undefined>(undefined);
 const generateInitialTasks = (): Task[] => {
   return [
     {
+      id: "0",
+      content: "Complete the project report",
+      created_at: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+      updated_at: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+      finished_at: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000),
+      position: 0,
+    },
+    {
       id: "1",
       content: "Review project documentation",
       created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
@@ -37,20 +45,44 @@ const generateInitialTasks = (): Task[] => {
     },
     {
       id: "3",
+      content: "Update Resume",
+      created_at: new Date(Date.now() - 50 * 24 * 60 * 60 * 1000),
+      updated_at: new Date(Date.now() - 50 * 24 * 60 * 60 * 1000),
+      finished_at: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
+      position: 1,
+    },
+    {
+      id: "4",
+      content: "Implement new feature",
+      created_at: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000),
+      updated_at: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000),
+      finished_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
+      position: 1,
+    },
+    {
+      id: "5",
+      content: "Submit pull request",
+      created_at: new Date(Date.now() - 50 * 24 * 60 * 60 * 1000),
+      updated_at: new Date(Date.now() - 50 * 24 * 60 * 60 * 1000),
+      finished_at: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
+      position: 1,
+    },
+    {
+      id: "6",
       content: "Write unit tests for the new feature",
       created_at: new Date(),
       updated_at: new Date(),
       position: 2,
     },
     {
-      id: "4",
+      id: "7",
       content: "Deploy to staging environment",
       created_at: new Date(Date.now() - 30 * 60 * 1000),
       updated_at: new Date(),
       position: 3,
     },
     {
-      id: "5",
+      id: "8",
       content: "Draft the Q3 roadmap",
       created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
       updated_at: new Date(),

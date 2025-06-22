@@ -8,6 +8,7 @@ const Container = styled.div`
   padding: 32px;
   max-width: 1400px;
   margin: 0 auto;
+  max-height: 900px;
 `;
 
 const TopGrid = styled.div`

@@ -48,9 +48,9 @@ export const TaskList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-height: 600px;
   overflow-y: auto;
   padding-right: 8px;
+  max-height: 700px;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -163,15 +163,20 @@ export const ButtonContainer = styled.div`
 `
 
 export const CalendarContainer = styled.div`
-  height: 900px;
   padding: 20px;
   border: 0.5px solid var(--light-text);
   border-radius: 36px;
+  background: rgba(255, 255, 255, 0.6);
 
   .rbc-calendar {
-    border-radius: 4px;
+    border-radius: 12px;
     padding: 20px;
   }
+
+  .rbc-month-view {
+    border-radius: 12px;
+  }
+
 
   .rbc-event {
     background: var(--dark-text);
@@ -192,30 +197,27 @@ export const CalendarContainer = styled.div`
     );
   }
   
+
   .rbc-month-header {
+    border: none;
+    margin-bottom: 18px;
+    background: var(--dark-text);
+    padding: 3px;
     border-radius: 12px;
-    margin-bottom: 24px;
-    border: 1px solid var(--dark-text);
-    z-index: 3;
   }
 
   .rbc-header {
-    padding: 8px;
     font-weight: 600;
-    color: black;
+    color: white;
     border: none;
-
   }
 
   .rbc-button-link {
-    border: none;
-    background: tan;
+    background: grey;
     color: white;
     border-radius: 12px;
-    padding: 4px;
-    margin: 0 4px;
+    padding: 3px;
     font-size: 12px;
-    border: none;
     font-weight: 600;
   }
 
@@ -241,7 +243,7 @@ export const CalendarContainer = styled.div`
     border: 1px solid var(--neutral-400);
     border-radius: 8px;
     padding: 8px 12px;
-    background: rgba(255, 255, 255, 0.9);
+    background: none;
     transition: all 0.2s;
 
     &:hover {
