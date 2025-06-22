@@ -4,6 +4,7 @@ import React, {
   useCallback,
   ReactNode,
   useContext,
+  useEffect,
 } from "react";
 import { Task } from "../types/Task";
 
@@ -94,7 +95,37 @@ const generateInitialTasks = (): Task[] => {
 export const TasksProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [tasks, setTasks] = useState<Task[]>(generateInitialTasks());
+  const [tasks, setTasks] = useState<Task[]>(() => {
+    try {
+      const localData = localStorage.getItem("tasks");
+      if (localData) {
+        const parsedTasks = JSON.parse(localData);
+        // Dates are stored as strings in JSON, so we need to convert them back
+        return parsedTasks.map((task: Task) => ({
+          ...task,
+          created_at: new Date(task.created_at),
+          updated_at: new Date(task.updated_at),
+          finished_at: task.finished_at
+            ? new Date(task.finished_at)
+            : undefined,
+        }));
+      }
+    } catch (error) {
+      console.error("Could not load tasks from local storage", error);
+    }
+    // If no local data, generate initial tasks and store them
+    const initialTasks = generateInitialTasks();
+    localStorage.setItem("tasks", JSON.stringify(initialTasks));
+    return initialTasks;
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    } catch (error) {
+      console.error("Could not save tasks to local storage", error);
+    }
+  }, [tasks]);
 
   const handleTaskComplete = useCallback((taskId: string) => {
     setTasks((prevTasks) =>

@@ -22,6 +22,8 @@ import {
   BadgeImage,
   BadgeText,
   FinishedTasksTitle,
+  TimeText,
+  BadgeImageWrapper,
 } from "./styles";
 
 const badgeImages = [
@@ -52,10 +54,13 @@ const BadgeWall: React.FC = () => {
       <BadgeGrid>
         {finishedTasks.map((task, index) => (
           <BadgeItem key={task.id}>
-            <BadgeImage
-              src={badgeImages[index % badgeImages.length]}
-              alt={`Badge for ${task.content}`}
-            />
+            <BadgeImageWrapper>
+              <BadgeImage
+                src={badgeImages[index % badgeImages.length]}
+                alt={`Badge for ${task.content}`}
+              />
+              <TimeText>{"06:01:2025"}</TimeText>
+            </BadgeImageWrapper>
             <BadgeText>{task.content}</BadgeText>
           </BadgeItem>
         ))}

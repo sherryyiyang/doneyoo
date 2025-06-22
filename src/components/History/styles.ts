@@ -14,7 +14,7 @@ export const BadgeGrid = styled.div`
     gap: 16px;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 800px) {
     grid-template-columns: repeat(2, 1fr);
   }
 `;
@@ -29,7 +29,7 @@ export const BadgeItem = styled.div`
   border: 3px dashed var(--neutral-300);
 
   &:hover{
-    background:rgba(254, 254, 254, 0.2);
+    background:rgba(254, 254, 254, 0.3);
     cursor: pointer;
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -48,16 +48,30 @@ export const BadgeImage = styled.img`
 `;
 
 export const BadgeText = styled.p`
+  margin-top: -32px;
   font-size: 24px;
   color: var(--neutral-500);
   margin: 0;
   line-height: 1.4;
   font-weight: 500;
   font-family:  "Cookie", cursive;
+  padding-bottom: 12px;
+`;
 
-  @media (max-width: 1200px) {
-    font-size: 18px;
-  }
+export const TimeText = styled.div`
+  position: absolute;
+  bottom: calc(5% - 2px);
+  right: calc(50% - 30px);
+  width: fit-content;
+  color: white;
+  background: rgba(0, 0, 0, 0.4); /* Optional for contrast */
+  padding: 1px 4px;
+  border-radius: 4px;
+
+  font-size: 10px;
+  font-weight: 600;
+  font-family: monospace;
+  color: var(--neutral-50);
 `;
 
 export const FinishedTasksContainer = styled.div`
@@ -136,3 +150,13 @@ export const StyledTable = styled(Table)`
   }
 `;
 
+
+export const BadgeImageWrapper = styled.div`
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 150px;
+  height: min-content;
+  min-height: 150px;
+  object-fit: contain;
+`;
