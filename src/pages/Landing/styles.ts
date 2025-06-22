@@ -17,12 +17,13 @@ export const Content = styled.div`
   padding: 0 24px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  gap: 4px;
   align-items: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 24px;
   }
 `;
 
@@ -50,7 +51,7 @@ export const ButtonGroup = styled.div`
   display: flex;
   gap: 16px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     justify-content: center;
   }
 `;
@@ -78,6 +79,7 @@ export const FeatureCard = styled.div`
   background: var(--neutral-50);
   border-radius: 16px;
   text-align: center;
+  border: 1px solid var(--neutral-600);
 `;
 
 export const FeatureTitle = styled.h3`
@@ -122,6 +124,37 @@ export const CTASubtitle = styled.p`
 
 export const Illustration = styled.img`
   position: relative;
-  width: 100%;
+  width:100%;
+  min-width: 750px;
   overflow: hidden;
+  margin-right: -80px;
+`
+
+
+export const SubIllustration = styled.img`
+  position: relative;
+  width: 200px;
+  overflow: hidden;
+`
+
+export const TextParagraph = styled.p`
+    padding:48px 0 12px 0;
+   margin: 0 auto;
+    
+   font-size: 24px;
+    font-weight: 500;
+    color: var(--neutral-900);
+    margin-bottom: 24px;
+    line-height: 1.2;
+
+    line-height: 1.6;
+
+    max-width: 600px;
+  `
+
+
+export const LogoSection = styled.div`
+  margin: auto;
+  display: flex;
+  margin: 32px 0;
 `
