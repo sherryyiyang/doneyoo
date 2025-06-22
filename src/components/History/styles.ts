@@ -171,6 +171,7 @@ export const StyledModal = styled(Modal)`
   .ant-modal-content {
     border-radius: 48px;
     color: white;
+    border: 1px solid var(--neutral-800);
   }
 
   .ant-modal-close {
