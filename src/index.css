@@ -52,6 +52,14 @@
   --purple-light: #dec0f1;
   --purple-lightest: #efd9ce;
 
+  /* Accent Colors */
+    --badge-color-1: #65d88f;
+    --badge-color-2: #facc12;
+    --badge-color-3: #29a3a3;
+    --badge-color-4: #339933;
+    --badge-color-5: #a9ef91;
+    --badge-color-6: #00b380;
+    --badge-color-7: #ffff99;
   /* Gradients */
   --gradient-tertiary: linear-gradient(135deg, #b79ced 0%, #dec0f1 100%);
   --gradient-light: linear-gradient(135deg, #dec0f1 0%, #efd9ce 100%);

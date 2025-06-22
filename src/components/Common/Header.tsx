@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import Button from "./Button";
+import donyooLogo from "../../assets/doneyoo_logo.png";
 
 const HeaderContainer = styled.header`
   background: var(--neutral-50);
@@ -32,12 +33,21 @@ const Nav = styled.nav`
 `;
 
 const Logo = styled(Link)`
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 24px;
   font-weight: 600;
   text-decoration: none;
   background: var(--dark-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+`;
+
+const LogoImage = styled.img`
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 `;
 
 const NavLinks = styled.div`
@@ -64,12 +74,15 @@ const ButtonGroup = styled.div`
 
 const Header: React.FC = () => {
   const location = useLocation();
-  const isAuthenticated = false; // TODO: Replace with actual auth state
+  const isAuthenticated = true; // TODO: Replace with actual auth state
 
   return (
     <HeaderContainer>
       <Nav>
-        <Logo to="/">Doneyoo</Logo>
+        <Logo to="/">
+          <LogoImage src={donyooLogo} alt="Doneyoo Logo" />
+          Doneyoo
+        </Logo>
         <NavLinks>
           <NavLink to="/" active={location.pathname === "/"}>
             Home
@@ -84,9 +97,7 @@ const Header: React.FC = () => {
               <Button variant="outline" to="/dashboard">
                 Dashboard
               </Button>
-              <Button as={Link} to="/signup" variant="secondary">
-                Log Out
-              </Button>
+              <Button variant="secondary">Log Out</Button>
             </>
           ) : (
             <>

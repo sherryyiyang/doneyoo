@@ -1,19 +1,19 @@
-import React, { useState, useCallback } from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import Calendar from "../../components/Dashboard/Calendar";
 import Todo from "../../components/Dashboard/Todo";
-import { Task } from "../../types/Task";
+import { useTasks } from "../../context/TasksContext";
 
 const Container = styled.div`
   padding: 32px;
-`;
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 350px;
-  gap: 48px;
   max-width: 1400px;
   margin: 0 auto;
+`;
+
+const TopGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 32px;
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
@@ -26,79 +26,21 @@ const Section = styled.section`
 `;
 
 const DashboardPage: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([
-    {
-      id: "1",
-      content: "Review project documentation",
-      created_at: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
-      updated_at: new Date(),
-      finished_at: new Date(),
-      position: 0,
-    },
-    {
-      id: "2",
-      content: "Update dependencies",
-      created_at: new Date(Date.now() - 24 * 60 * 60 * 1000), // 24 hours ago
-      updated_at: new Date(),
-      finished_at: new Date(),
-      position: 1,
-    },
-    {
-      id: "3",
-      content: "Write unit tests",
-      created_at: new Date(),
-      updated_at: new Date(),
-      position: 2,
-    },
-  ]);
+  const {
+    tasks,
+    handleTaskComplete,
+    handleTaskAdd,
+    handleTaskDelete,
+    handleTasksReorder,
+  } = useTasks();
 
-  const handleTaskComplete = useCallback((taskId: string) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === taskId
-          ? {
-              ...task,
-              updated_at: new Date(),
-              finished_at: task.finished_at ? undefined : new Date(),
-            }
-          : task
-      )
-    );
-  }, []);
-
-  const handleTaskAdd = useCallback(
-    (content: string) => {
-      const newTask: Task = {
-        id: Date.now().toString(),
-        content,
-        created_at: new Date(),
-        updated_at: new Date(),
-        position: tasks.length,
-      };
-      setTasks((prevTasks) => [...prevTasks, newTask]);
-    },
-    [tasks.length]
-  );
-
-  const handleTaskDelete = useCallback((taskId: string) => {
-    setTasks((prevTasks) => {
-      const updatedTasks = prevTasks
-        .filter((task) => task.id !== taskId)
-        .map((task, index) => ({
-          ...task,
-          position: index,
-        }));
-      return updatedTasks;
-    });
-  }, []);
-
-  const handleTasksReorder = useCallback((reorderedTasks: Task[]) => {
-    setTasks(reorderedTasks);
-  }, []);
+  const activeTasks = useMemo(() => {
+    return tasks.filter((task) => !task.finished_at);
+  }, [tasks]);
 
   return (
     <Container>
-      <Grid>
+      <TopGrid>
         <Section>
           <Calendar tasks={tasks} />
         </Section>
@@ -111,7 +53,7 @@ const DashboardPage: React.FC = () => {
             onTasksReorder={handleTasksReorder}
           />
         </Section>
-      </Grid>
+      </TopGrid>
     </Container>
   );
 };

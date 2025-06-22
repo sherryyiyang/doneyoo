@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
   DragDropContext,
   Droppable,
@@ -16,13 +16,15 @@ import {
   TaskItem,
   TaskContent,
   TaskText,
-  TaskDuration,
   DeleteButton,
   ButtonContainer,
+  TodoHeader,
+  TodoTitle,
+  HistoryLink,
 } from "./styles";
 import { Input, Checkbox } from "antd";
 import Button from "../../components/Common/Button";
-import { set } from "date-fns";
+import { DurationBadge } from "../../components/Common/durationBadge";
 
 interface TodoProps {
   tasks: Task[];
@@ -73,6 +75,10 @@ const Todo: React.FC<TodoProps> = ({
 
   return (
     <Container>
+      <TodoHeader>
+        <TodoTitle>To-do List</TodoTitle>
+        <HistoryLink to="/history">View History →</HistoryLink>
+      </TodoHeader>
       <Form onSubmit={handleSubmit}>
         <TextArea
           value={newTaskContent}
@@ -117,23 +123,17 @@ const Todo: React.FC<TodoProps> = ({
                         <TaskContent>
                           <TaskText isCompleted={!!task.finished_at}>
                             {task.content}
+                            {task.finished_at && (
+                              <DurationBadge
+                                duration={
+                                  task.finished_at.getTime() -
+                                  task.created_at.getTime()
+                                }
+                              />
+                            )}
                           </TaskText>
                         </TaskContent>
-                        {task.finished_at && (
-                          <TaskDuration
-                            duration={
-                              task.finished_at.getTime() -
-                              task.created_at.getTime()
-                            }
-                          >
-                            {Math.round(
-                              (task.finished_at.getTime() -
-                                task.created_at.getTime()) /
-                                3600000
-                            )}
-                            h
-                          </TaskDuration>
-                        )}
+
                         <DeleteButton onClick={() => onTaskDelete(task.id)}>
                           ×
                         </DeleteButton>

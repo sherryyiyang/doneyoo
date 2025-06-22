@@ -1,9 +1,11 @@
 import exp from "constants";
 import styled from "styled-components";
+import { Table, Tag } from "antd";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   background: var(--neutral-50);
-
+  padding: 24px;
 `;
 
 export const Header = styled.div`
@@ -120,7 +122,9 @@ export const Checkbox = styled.input`
 `;
 
 export const TaskContent = styled.div`
-  flex: 1;
+  flex: (1, 1, 0);
+  gap: 8px;
+  display: inline-flex;
 `;
 
 export const TaskText = styled.div<{ isCompleted: boolean }>`
@@ -129,19 +133,11 @@ export const TaskText = styled.div<{ isCompleted: boolean }>`
     isCompleted ? "var(--neutral-400)" : "var(--dark-text)"};
   text-decoration: ${({ isCompleted }) =>
     isCompleted ? "line-through" : "none"};
+  > span {
+    margin-left: 8px;
+  }
 `;
 
-export const TaskDuration = styled.span<{ duration: number }>`
-  font-size: 12px;
-  padding: 2px 8px;
-  border-radius: 12px;
-  background: ${({ duration }) => {
-    if (duration <= 3600000) return "var(--success-500)"; // 1 hour
-    if (duration <= 86400000) return "var(--warning-500)"; // 24 hours
-    return "var(--error-500)";
-  }};
-  color: white;
-`;
 
 export const DeleteButton = styled.button`
   background: none;
@@ -158,7 +154,6 @@ export const DeleteButton = styled.button`
   }
 `;
 
-
 export const ButtonContainer = styled.div`
   display: flex;
   align-items: end;
@@ -167,12 +162,11 @@ export const ButtonContainer = styled.div`
   margin-left: auto;
 `
 
-
 export const CalendarContainer = styled.div`
-  height: 850px;
+  height: 900px;
   padding: 20px;
-  background: var(--bg-gradient-card);
   border: 0.5px solid var(--light-text);
+  border-radius: 36px;
 
   .rbc-calendar {
     border-radius: 4px;
@@ -197,12 +191,37 @@ export const CalendarContainer = styled.div`
       rgba(149, 127, 239, 0.1) 100%
     );
   }
+  
+  .rbc-month-header {
+    border-radius: 12px;
+    margin-bottom: 24px;
+    border: 1px solid var(--dark-text);
+    z-index: 3;
+  }
 
   .rbc-header {
     padding: 8px;
     font-weight: 600;
-    color: var(--dark-text);
-    border-bottom: 1px solid rgba(113, 97, 239, 0.2);
+    color: black;
+    border: none;
+
+  }
+
+  .rbc-button-link {
+    border: none;
+    background: tan;
+    color: white;
+    border-radius: 12px;
+    padding: 4px;
+    margin: 0 4px;
+    font-size: 12px;
+    border: none;
+    font-weight: 600;
+  }
+
+  .rbc-date-cell {
+    margin-bottom: 12px;
+    text-align: left;
   }
 
   .rbc-toolbar {
@@ -213,6 +232,8 @@ export const CalendarContainer = styled.div`
       color: var(--dark-text);
       font-size: 18px;
     }
+
+
   }
 
   .rbc-toolbar button {
@@ -224,12 +245,8 @@ export const CalendarContainer = styled.div`
     transition: all 0.2s;
 
     &:hover {
-      background: linear-gradient
-        135deg,
-        rgba(113, 97, 239, 0.1) 0%,
-        rgba(149, 127, 239, 0.1) 100%
-      );
-      border-color: var(--light-text);
+        background: var(--dark-text);
+        color: white;
     }
 
     &.rbc-active {
@@ -277,10 +294,69 @@ export const CalendarContainer = styled.div`
   .rbc-day-slot .rbc-time-slot {
     border-top: 1px solid rgba(113, 97, 239, 0.05);
   }
-  border-radius: 36px;
 
   .rbc-month-row {
     min-height: 150px; /* increase as needed */
     max-height: 200px; /* increase as needed */
+  }
+`;
+
+export const FinishedTasksContainer = styled.div`
+  background: var(--bg-gradient-card);
+  padding: 24px;
+  margin-top: 32px;
+`;
+
+export const FinishedTasksTitle = styled.h2`
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--dark-text);
+  margin-bottom: 24px;
+`;
+
+export const StyledTable = styled(Table)`
+  .ant-table {
+    background: transparent;
+  }
+
+  .ant-table-thead > tr > th {
+    background: white;
+    font-weight: 600;
+    color: var(--neutral-800);
+    border-bottom: 2px solid var(--primary-500);
+  }
+
+  .ant-table-tbody > tr > td {
+    border-bottom: 1px solid var(--neutral-200);
+  }
+
+  .ant-table-tbody > tr.ant-table-row:hover > td {
+    background: var(--neutral-100);
+  }
+`;
+
+export const TodoHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  margin-bottom: 16px;
+`;
+
+export const TodoTitle = styled.h2`
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--dark-text);
+  margin: 0;
+`;
+
+export const HistoryLink = styled(Link)`
+  font-size: 14px;
+  color: var(--dark-text);
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
   }
 `;

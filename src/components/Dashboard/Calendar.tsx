@@ -15,6 +15,15 @@ interface CalendarProps {
   onDateSelect?: (date: Date) => void;
 }
 
+interface CustomToolbarProps {
+  label: string;
+  view: View;
+  views: View[];
+  onNavigate: (action: "PREV" | "NEXT" | "TODAY" | "DATE", date?: Date) => void;
+  onView: (view: View) => void;
+  date: Date;
+}
+
 const locales = {
   "en-US": require("date-fns/locale/en-US"),
 };
@@ -29,6 +38,7 @@ const localizer = dateFnsLocalizer({
 
 const Calendar: React.FC<CalendarProps> = ({ tasks, onDateSelect }) => {
   const [view, setView] = React.useState<View>("month");
+  const [date, setDate] = React.useState(new Date());
 
   const events = tasks
     .filter((task) => task.finished_at)
@@ -38,14 +48,18 @@ const Calendar: React.FC<CalendarProps> = ({ tasks, onDateSelect }) => {
         : 0;
 
       let className = "completed-medium";
-      if (task.finished_at) {
-        if (duration <= 3600000) {
-          // 1 hour
-          className = "completed-fast";
-        } else if (duration > 86400000) {
-          // 24 hours
-          className = "completed-slow";
-        }
+      if (duration <= 3600000) {
+        className = "completed-short"; // 1 hour
+      } else if (duration <= 86400000) {
+        className = "completed-long"; // 24 hours
+      } else if (duration <= 604800000) {
+        className = "completed-week"; // 7 days
+      } else if (duration <= 2592000000) {
+        className = "completed-month"; // 30 days
+      } else if (duration <= 31536000000) {
+        className = "completed-year"; // 1 year
+      } else {
+        className = "completed-long-term"; // more than 1   ear
       }
 
       const startTime = task.finished_at || task.created_at;
@@ -72,21 +86,30 @@ const Calendar: React.FC<CalendarProps> = ({ tasks, onDateSelect }) => {
     };
 
     let style = baseStyle;
-    if (event.className === "completed-fast") {
-      style = {
-        ...baseStyle,
-        backgroundColor: "var(--success-500)",
-      };
-    } else if (event.className === "completed-medium") {
-      style = {
-        ...baseStyle,
-        backgroundColor: "var(--warning-500)",
-      };
-    } else if (event.className === "completed-slow") {
-      style = {
-        ...baseStyle,
-        backgroundColor: "var(--error-500)",
-      };
+    if (event.className) {
+      switch (event.className) {
+        case "completed-short":
+          style = { ...baseStyle, backgroundColor: "var(--badge-color-1)" };
+          break;
+        case "completed-long":
+          style = { ...baseStyle, backgroundColor: "var(--badge-color-2)" };
+          break;
+        case "completed-week":
+          style = { ...baseStyle, backgroundColor: "var(--badge-color-3)" };
+          break;
+        case "completed-month":
+          style = { ...baseStyle, backgroundColor: "var(--badge-color-4)" };
+          break;
+        case "completed-year":
+          style = { ...baseStyle, backgroundColor: "var(--badge-color-5)" };
+          break;
+        case "completed-long-term":
+          style = { ...baseStyle, backgroundColor: "var(--badge-color-6)" };
+          break;
+        default:
+          style = { ...baseStyle, backgroundColor: "var(--dark-text)" };
+          break;
+      }
     }
 
     return {
@@ -97,6 +120,10 @@ const Calendar: React.FC<CalendarProps> = ({ tasks, onDateSelect }) => {
 
   const handleViewChange = (newView: View) => {
     setView(newView);
+  };
+
+  const handleNavigate = (newDate: Date) => {
+    setDate(newDate);
   };
 
   return (
@@ -112,6 +139,8 @@ const Calendar: React.FC<CalendarProps> = ({ tasks, onDateSelect }) => {
         eventPropGetter={eventStyleGetter}
         view={view}
         onView={handleViewChange}
+        date={date}
+        onNavigate={handleNavigate}
         views={[Views.MONTH, Views.WEEK, Views.DAY]}
         defaultView={Views.MONTH}
         step={60}
@@ -119,7 +148,7 @@ const Calendar: React.FC<CalendarProps> = ({ tasks, onDateSelect }) => {
         min={new Date(0, 0, 0, 0, 0, 0)}
         max={new Date(0, 0, 0, 23, 59, 59)}
         components={{
-          toolbar: CustomToolbar,
+          toolbar: (props) => <CustomToolbar {...props} />,
         }}
         dayLayoutAlgorithm="no-overlap"
       />
@@ -129,16 +158,16 @@ const Calendar: React.FC<CalendarProps> = ({ tasks, onDateSelect }) => {
 
 // Custom toolbar component to ensure view buttons work properly
 const CustomToolbar = (toolbar: any) => {
-  const goToToday = () => {
-    toolbar.onNavigate("TODAY");
-  };
-
   const goToBack = () => {
     toolbar.onNavigate("PREV");
   };
 
   const goToNext = () => {
     toolbar.onNavigate("NEXT");
+  };
+
+  const goToToday = () => {
+    toolbar.onNavigate("TODAY");
   };
 
   const changeView = (view: View) => {
