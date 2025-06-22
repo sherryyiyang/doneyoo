@@ -166,7 +166,7 @@ export const CalendarContainer = styled.div`
   padding: 20px;
   border: 0.5px solid var(--light-text);
   border-radius: 36px;
-  background: rgba(255, 255, 255, 0.6);
+  background: white;
 
   .rbc-calendar {
     border-radius: 12px;
