@@ -201,14 +201,14 @@ export const CalendarContainer = styled.div`
   .rbc-month-header {
     border: none;
     margin-bottom: 18px;
-    background: var(--dark-text);
-    padding: 3px;
-    border-radius: 12px;
+    background: none;
+    padding: 3px 0 6px 0;
+    border-bottom: 3px solid var(--dark-text);
   }
 
   .rbc-header {
     font-weight: 600;
-    color: white;
+    color: var(--dark-text);
     border: none;
   }
 

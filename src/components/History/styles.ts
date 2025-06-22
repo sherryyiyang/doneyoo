@@ -10,6 +10,10 @@ export const BadgeGrid = styled.div`
   grid-template-columns: repeat(4, 1fr);
   gap: 32px;
 
+  @media (max-width: 1200px) {
+    gap: 16px;
+  }
+
   @media (max-width: 500px) {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -20,27 +24,40 @@ export const BadgeItem = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 16px;
+  padding: 16px 0;
   border-radius: 32px;
   border: 3px dashed var(--neutral-300);
+
+  &:hover{
+    background:rgba(254, 254, 254, 0.2);
+    cursor: pointer;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid var(--neutral-300);
+}
+  }
   `
 
 
 export const BadgeImage = styled.img`
-  width: 18vw;
+  width: 100%;
   min-width: 150px;
-  height: 18vw;
+  height: 100%;
   min-height: 150px;
   object-fit: contain;
 `;
 
 export const BadgeText = styled.p`
   font-size: 24px;
-  color: var(--neutral-600);
+  color: var(--neutral-500);
   margin: 0;
   line-height: 1.4;
   font-weight: 500;
   font-family:  "Cookie", cursive;
+
+  @media (max-width: 1200px) {
+    font-size: 18px;
+  }
 `;
 
 export const FinishedTasksContainer = styled.div`

@@ -2,10 +2,18 @@ import React, { useMemo } from "react";
 import { useTasks } from "../../context/TasksContext";
 import { Task } from "../../types/Task";
 
-import badge1 from "../../assets/badge1.png";
-import badge2 from "../../assets/badge2.png";
-import badge3 from "../../assets/badge3.png";
-import badge4 from "../../assets/badge.png";
+import badge1 from "../../assets/badge_1.webp";
+import badge2 from "../../assets/badge_2.webp";
+import badge3 from "../../assets/badge_3.webp";
+import badge4 from "../../assets/badge_4.webp";
+import badge5 from "../../assets/badge_5.webp";
+import badge6 from "../../assets/badge_6.webp";
+import badge7 from "../../assets/badge_7.webp";
+import badge8 from "../../assets/badge_8.webp";
+import badge9 from "../../assets/badge_9.webp";
+import badge10 from "../../assets/badge_10.webp";
+import badge11 from "../../assets/badge_11.webp";
+import badge12 from "../../assets/badge_12.webp";
 
 import {
   BadgeWallContainer,
@@ -16,7 +24,20 @@ import {
   FinishedTasksTitle,
 } from "./styles";
 
-const badgeImages = [badge1, badge2, badge3, badge4];
+const badgeImages = [
+  badge1,
+  badge2,
+  badge3,
+  badge4,
+  badge5,
+  badge6,
+  badge7,
+  badge8,
+  badge9,
+  badge10,
+  badge11,
+  badge12,
+];
 
 const BadgeWall: React.FC = () => {
   const { tasks } = useTasks();
