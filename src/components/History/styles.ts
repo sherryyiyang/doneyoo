@@ -58,6 +58,10 @@ export const FinishedTasksTitle = styled.h2`
 
 export const StyledTable = styled(Table)`
 
+  table {
+    border-radius: 36px;
+  }
+
   .ant-table {
     background: none;
     border-radius: 36px;
@@ -72,7 +76,7 @@ export const StyledTable = styled(Table)`
     font-weight: 600;
     color: white;
     border-bottom: 2px solid var(--dark-text);
-    padding: 8px;
+    padding: 8px 16px;
     align-items: center;
 
     &:hover {
@@ -104,11 +108,14 @@ export const StyledTable = styled(Table)`
   }
 
   .ant-table-tbody>tr>td {
-    background: rgba(255, 255, 255, 0.3);
+    background: None;
   }
 
   .ant-table-tbody > tr.ant-table-row:hover > td {
-    background: rgba(255, 255, 255, 0.3);
+    background: None;
+  }
+  .ant-table-column-sorter {
+    color: white !important;
   }
 `;
 
