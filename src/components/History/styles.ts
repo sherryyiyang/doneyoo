@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Table, Tag } from "antd";
+import { Modal, Table, Tag } from "antd";
 
 export const BadgeWallContainer = styled.div`
   margin-bottom: 48px;
@@ -27,9 +27,10 @@ export const BadgeItem = styled.div`
   padding: 16px 0;
   border-radius: 32px;
   border: 3px dashed var(--neutral-300);
+  background:rgba(254, 254, 254, 0.15);
 
   &:hover{
-    background:rgba(254, 254, 254, 0.3);
+    background:rgba(254, 254, 254, 0.4);
     cursor: pointer;
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -159,4 +160,43 @@ export const BadgeImageWrapper = styled.div`
   height: min-content;
   min-height: 150px;
   object-fit: contain;
+`;
+
+export const StyledModal = styled(Modal)`
+  display: flex;
+  justifyContent: center;
+  align-items: center;
+  align-self: center;
+
+  .ant-modal-content {
+    border-radius: 48px;
+    color: white;
+  }
+
+  .ant-modal-close {
+    color: white !important;
+    background: var(--dark-text);
+
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    border-radius: 50%;
+
+    &:hover {
+      background: var(--neutral-700);
+      cursor: pointer;
+      shadow: none;
+      box-shadow: none;
+    }
+  }
+`;
+
+
+export const SubtextContainer = styled.div`
+  margin-top: 0 auto;
+  align-items: center;
+  align-content: center;
+  vertical-align: middle;
+  text-align: center;
+  padding-bottom: 36px;
 `;
