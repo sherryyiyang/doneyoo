@@ -10,9 +10,3 @@ export interface Task {
 export interface TaskFormData {
   content: string;
 }
-
-export const TaskPriorityColors = {
-  low: 'var(--secondary-400)',
-  medium: 'var(--primary-500)',
-  high: 'var(--error-500)',
-}; 
